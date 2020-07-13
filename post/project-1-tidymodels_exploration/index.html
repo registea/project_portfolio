@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Exploring Tidymodels | Anthony Registe</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.71.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://registea.github.io/project_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Exploring Tidymodels" />
+<meta property="og:description" content="Predictive Model Framework" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/" />
+<meta property="article:published_time" content="2020-07-13T12:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-13T12:00:00+00:00" />
+<meta itemprop="name" content="Exploring Tidymodels">
+<meta itemprop="description" content="Predictive Model Framework">
+<meta itemprop="datePublished" content="2020-07-13T12:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-07-13T12:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="4469">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Exploring Tidymodels"/>
+<meta name="twitter:description" content="Predictive Model Framework"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://registea.github.io/project_portfolio/images/project1/feature_project1.jpg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://registea.github.io/project_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Anthony Registe
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://registea.github.io/project_portfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://registea.github.io/project_portfolio/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://registea.github.io/project_portfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/anthony-registe/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/registea/" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Exploring Tidymodels</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Predictive Model Framework
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/&amp;text=Exploring%20Tidymodels" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/&amp;title=Exploring%20Tidymodels" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Exploring Tidymodels</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-07-13T12:00:00Z">July 13, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/churn_graphic.png"/> 
+</figure>
+
+<h1 id="introduction">Introduction</h1>
+<p>The primary objective of this notebook is to explore the tidymodels
+predictive model framework. I am familiar with the caret package but as
+Max Kuhn has replaced caret with tidymodels and it has been available
+for a couple of years, I thought it a good time to take it for a test
+ride. To enable me to explore the framework a churn
+<a href="https://www.kaggle.com/shrutimechlearn/churn-modelling">dataset</a>
+provided by <strong>Shurti_lyyer</strong> on Kaggle will be used. The objective of
+this analysis is to complete a binary classification to identify whether
+a customer will leave the business. Please find the code on
+<a href="https://github.com/registea/tidymodels_exploration/blob/master/tidymodels_exploration.rmd">github</a>.</p>
+<p>From reading online, the key tidymodels packages are:</p>
+<ul>
+<li>rsample - Different types of re-samples</li>
+<li>recipes - Transformations for model data pre-processing</li>
+<li>parnip - A common interface for model creation</li>
+<li>tune - Framework for hyperparameter tuning</li>
+<li>dials - Specific hyperparameter tuning functions</li>
+<li>yardstick - Measure model performance</li>
+</ul>
+<h1 id="data-loading">Data loading</h1>
+<p>To kick start this project, the fread function from the data.table
+package is used to load the data into memory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Load data</span>
+df_churn <span style="color:#f92672">&lt;-</span>
+  data.table<span style="color:#f92672">::</span><span style="color:#a6e22e">fread</span>(<span style="color:#e6db74">&#34;C:/Users/Anthony/Documents/Git/Project Portfolio/
+</span><span style="color:#e6db74">                     tidymodels_exploration/Churn_Modelling.csv&#34;</span>)
+</code></pre></div><h1 id="exploratory-data-analysis">Exploratory Data Analysis</h1>
+<p>The skim function from the <strong>skimr</strong> package produces the summary output
+below, showing that we have 10,000 observations and 14 variables. There
+are 3 character variables and 11 numeric.</p>
+<p>The character variables relate to gender, geography and customer’s
+surname. The numerical variables have two references of Id (rows and
+customer). Beyond this, data relates to age, tenure, credit, income and
+our final variable of whether the customer churned (labelled as Exited).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Summarise datafrmae</span>
+<span style="color:#a6e22e">skim</span>(df_churn)
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Name</td>
+<td align="left">df_churn</td>
+</tr>
+<tr>
+<td align="left">Number of rows</td>
+<td align="left">10000</td>
+</tr>
+<tr>
+<td align="left">Number of columns</td>
+<td align="left">14</td>
+</tr>
+<tr>
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">character</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">numeric</td>
+<td align="left">11</td>
+</tr>
+<tr>
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p>Data summary</p>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Surname</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">23</td>
+<td align="right">0</td>
+<td align="right">2932</td>
+</tr>
+<tr>
+<td align="left">Geography</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left">Gender</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">RowNumber</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5000.50</td>
+<td align="right">2886.90</td>
+</tr>
+<tr>
+<td align="left">CustomerId</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">15690940.57</td>
+<td align="right">71936.19</td>
+</tr>
+<tr>
+<td align="left">CreditScore</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">650.53</td>
+<td align="right">96.65</td>
+</tr>
+<tr>
+<td align="left">Age</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">38.92</td>
+<td align="right">10.49</td>
+</tr>
+<tr>
+<td align="left">Tenure</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.01</td>
+<td align="right">2.89</td>
+</tr>
+<tr>
+<td align="left">Balance</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">76485.89</td>
+<td align="right">62397.41</td>
+</tr>
+<tr>
+<td align="left">NumOfProducts</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.53</td>
+<td align="right">0.58</td>
+</tr>
+<tr>
+<td align="left">HasCrCard</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.71</td>
+<td align="right">0.46</td>
+</tr>
+<tr>
+<td align="left">IsActiveMember</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.52</td>
+<td align="right">0.50</td>
+</tr>
+<tr>
+<td align="left">EstimatedSalary</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">100090.24</td>
+<td align="right">57510.49</td>
+</tr>
+<tr>
+<td align="left">Exited</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.20</td>
+<td align="right">0.40</td>
+</tr>
+</tbody>
+</table>
+<p>The skim output shows that most of the variable names have a mixture of
+upper and lower case characters. The set_names functions coverts all
+variable names to lower case. This makes the programming a little bit
+easier. Further to this there is a variable ‘RowNumber’ and ‘customerid’
+which just references the row of each observation and a unique
+identifier for each customer. These can be removed from the analysis.</p>
+<h2 id="exploring-target-variable">Exploring Target Variable</h2>
+<p>The target variable in this dataset is <strong>exited</strong>, the chart below shows
+that roughly 80% of customers remain while the remaining 20% of
+customers churn. This is a fairly unbalanced data, so we might have to
+treat that at another time. The target variable is stored as numeric, I
+will convert it to a factor with levels relating to remain and churn.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig1_target_split.png"/> 
+</figure>
+
+<h2 id="exploring-categorical-variables">Exploring Categorical Variables</h2>
+<p>The chart below indicates that male customers have a lower risk of
+churning that female customers. Looking at the Geography variable, there
+doesn’t appear to be a difference between the underlying rates of churn
+for customers from France and Spain. However, comparing the both of
+those to Germany, they both have much lower likelihood of churn.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig2_cat_split1.png"/> 
+</figure>
+
+<p>The final categorical variable is the customer’s surname, of the 10,000
+observations, there are just under 3,000 unique surnames. This indicates
+that some customers come from families (some quite large) who all have
+accounts with the same bank. The histogram indicates that the majority
+of the bank customers are the only one from their family that bank
+there. However, a number of customers do have multiple family members.
+There appears to be a relationship that the larger the family size who
+have an account the lower the churn rate. In the following section it
+could be good to explore additional ways of including the surname into
+the model.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig3_cat_split2.png"/> 
+</figure>
+
+<h2 id="exploring-numerical-variables">Exploring Numerical Variables</h2>
+<p>The plot looks at the relationship between each numeric variable and
+churn. Two of the variables ‘hascrcard’ and ‘isactivemember’ are binary
+variables and should be visualised in a different form. The remaining
+variables can be summarised as:</p>
+<ul>
+<li>Age: There appears to be a relationship that customers that churn
+are older on average than customers that don’t</li>
+<li>Balance: The average balance of customers who churn and remain are
+similar. However, those who churn tend to have a higher balance</li>
+<li>Credit score: There doesn’t appear to be much of a difference with
+regards to credit score</li>
+<li>Estimated salary: Again there doesn’t appear to be much of a
+difference with regard to salary</li>
+<li>Number of products: On average customers that remain have more than
+one product, while customers that leave have only one</li>
+<li>Tenure: There is a wider distribution of tenure within customers
+that churn, it appears that newer and older customers could have a
+higher likelihood of churning</li>
+</ul>
+<!-- raw HTML omitted -->
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig4_num_split1.png"/> 
+</figure>
+
+<p>As mentioned above the ‘credit card’ and ‘Active member’ variables
+shouldn’t be visualised using a boxplot. To generate the following plot,
+the variables are firstly converted to factors and then the plot
+explores whether there is a relationship with churn. Having a credit
+card doesn’t appear to impact the customers likelihood to churn.
+Alternatively, whether the customer is considered active, definitely has
+a relationship, ‘Active’ customers have much lower likelihood of
+churning.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig5.png"/> 
+</figure>
+
+<p>The plot below indicates that the numerical predictors are not
+particularly correlated, so no actions are required to address
+multicollinearity.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig6_corr_plot.png"/> 
+</figure>
+
+<h1 id="feature-engineering">Feature Engineering</h1>
+<p>An important part of the model building process is to try and create new
+predictors which will improve the accuracy of the model. The information
+gained from the exploratory analysis, provides a couple of ideas as to
+which variables can be generated.</p>
+<h3 id="surname">Surname</h3>
+<p>Given that the surname has circa 3k unique entries, it is unlikely that
+the variable will be entered into the model. Instead some of the
+information embedded will be used to generate new variables. The first
+variable which will be created is a count of the total number of family
+members with the same surname. As seen in the section above this
+appeared to show a negatively correlated relationship.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Create a variable of total family size</span>
+df_churn <span style="color:#f92672">&lt;-</span>
+  df_churn <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">left_join</span>(df_churn <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">group_by</span>(surname, exited) <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">count</span>() <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">spread</span>(exited, n) <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">replace_na</span>(<span style="color:#a6e22e">list</span>(Churn <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, Remain <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">mutate</span>(total_family <span style="color:#f92672">=</span> Churn <span style="color:#f92672">+</span> Remain) <span style="color:#f92672">%&gt;%</span>
+              <span style="color:#a6e22e">select</span>(surname, total_family),
+            by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;surname&#34;</span>)
+</code></pre></div><p>Without committing to thorough text analytics, there might be some value
+in seeing if the attributes of a customer’s name has a relationship with
+whether they churn. A simple approach is taken here, firstly 26 new
+columns are created to capture each letter of the alphabet a:z. Then for
+each surname those columns are populated with the counts of times the
+letter appeared in the customer’s name. The final step is to try and
+reduce the new 26 columns down, a Principle Component Analysis (PCA) was
+conducted to achieve this. The output below shows that the first 10
+principle components represent 75% of the variation in the letters
+associated with customer’s names.</p>
+<pre><code>## Importance of components:
+##                           PC1    PC2    PC3     PC4     PC5     PC6     PC7
+## Standard deviation     0.7707 0.7152 0.6944 0.66855 0.62850 0.58522 0.56174
+## Proportion of Variance 0.1188 0.1023 0.0965 0.08943 0.07904 0.06853 0.06314
+## Cumulative Proportion  0.1188 0.2212 0.3177 0.40713 0.48617 0.55470 0.61784
+##                            PC8     PC9    PC10    PC11    PC12    PC13    PC14
+## Standard deviation     0.50341 0.46637 0.44802 0.41093 0.39631 0.36110 0.34823
+## Proportion of Variance 0.05071 0.04352 0.04016 0.03379 0.03143 0.02609 0.02426
+## Cumulative Proportion  0.66855 0.71207 0.75223 0.78602 0.81745 0.84354 0.86781
+##                           PC15   PC16    PC17    PC18    PC19    PC20    PC21
+## Standard deviation     0.33924 0.3209 0.29870 0.28208 0.26311 0.25269 0.22539
+## Proportion of Variance 0.02303 0.0206 0.01785 0.01592 0.01385 0.01278 0.01016
+## Cumulative Proportion  0.89083 0.9114 0.92929 0.94521 0.95906 0.97184 0.98201
+##                           PC22    PC23    PC24    PC25    PC26
+## Standard deviation     0.19837 0.18813 0.08883 0.08001 0.02989
+## Proportion of Variance 0.00787 0.00708 0.00158 0.00128 0.00018
+## Cumulative Proportion  0.98988 0.99696 0.99854 0.99982 1.00000
+</code></pre>
+<p>The plot below shows the distribution of churn and remain for the first
+10 principle components just created. There doesn’t appear to be much
+variation based on the name based components, however this will be
+explored more rigorously during feature selection.</p>
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig7_box_plot.png"/> 
+</figure>
+
+<h4 id="tenure">Tenure</h4>
+<p>The exploratory analysis revealed that the distribution of tenure for
+customers who left the bank was a lot wider than those who remained. It
+suggested that maybe newer and longer standing customers were at higher
+risk of churn, while medium term customers had a lower likelihood. As
+such a new variable will be created which splits tenure into less than 3
+being a new customer and being longer than 7 being older customer.</p>
+<h1 id="model-building">Model Building</h1>
+<p>Now that the data has been fully prepared we can progress to the model
+building phase. This is where we can take the tidymodels suite of
+packages for a spin and explore the functionality for model development.
+A number of different models will be built to predict churn, where
+necessary the models will tuned and evaluated using the ROC metric. The
+following models which will be built and tuned using the tidymodel
+framework:</p>
+<ul>
+<li>GLM</li>
+<li>GLMNET</li>
+<li>Random Forest</li>
+</ul>
+<p>The steps which will be explored in this section are:</p>
+<ul>
+<li>Split the data into training and testing sets</li>
+<li>Conduct feature selection to identify which variables to actually
+include in this analysis</li>
+<li>Determine which pre-processing steps are required</li>
+<li>Build, compare and choose best cross validated model based on AUROC</li>
+<li>Calculate probability thresholds to determine optimal cut off</li>
+<li>Apply best model to test data and calculate evaluation statistics</li>
+<li>Compare standard cut off to calculated threshold</li>
+</ul>
+<h2 id="split-data">Split Data</h2>
+<p>To ensure we fairly evaluate our model, we will utilise the
+inital_split function from rsample package. This function allows us to
+randomly split the churn dataset into two, one for testing and one for
+training. There is an option for stratified sampling along the target
+variable to ensure that the distributions are the same in both training
+and testing datasets. Once an index has been created the functions
+training and testing can be used to create the two datasets. The table
+below shows that the inital_split function has achieved the same
+distribution of churn and remain observations in the training and
+testing datasets to 4dp.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Create an index to split the data</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1989</span>)
+l_split_index <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">initial_split</span>(data <span style="color:#f92672">=</span> df_churn,
+                prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.75</span>,
+                strata <span style="color:#f92672">=</span> exited
+                )
+
+<span style="color:#75715e"># Create training and testing set using the index</span>
+df_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">training</span>(l_split_index)
+df_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">testing</span>(l_split_index)
+
+<span style="color:#75715e"># Check same distribution of output</span>
+<span style="color:#a6e22e">bind_rows</span>(
+          <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(df_train<span style="color:#f92672">$</span>exited)),<span style="color:#ae81ff">4</span>)) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">mutate</span>(Data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Train&#34;</span>),
+          <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(df_test<span style="color:#f92672">$</span>exited)),<span style="color:#ae81ff">4</span>)) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">mutate</span>(Data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Test&#34;</span>)
+          ) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">spread</span>(Var1, Freq) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">kable</span>(style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pandoc&#34;</span>,
+        align <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;c&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>))
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="center">Data</th>
+<th align="center">Churn</th>
+<th align="center">Remain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Test</td>
+<td align="center">0.2037</td>
+<td align="center">0.7963</td>
+</tr>
+<tr>
+<td align="center">Train</td>
+<td align="center">0.2037</td>
+<td align="center">0.7963</td>
+</tr>
+</tbody>
+</table>
+<h2 id="feature-selection">Feature Selection</h2>
+<p>Generally in feature selection, there would be a more formal assessment
+of each feature with the target variable. However, in this analysis as
+the focus is mostly on getting to know tidymodels this section will
+merely be selecting between the existing and new variables created.</p>
+<p>I will run a quick random forest model to determine the feature
+importance of the variables. I couldn’t seem to find documentation
+showing how to extract the variable importance when using tidymodels. I
+decided to progress and use caret here, to keep the analysis moving.</p>
+<p>The results from the random forest show that the model isn’t that great
+at prediction but the following variables rank in importance:</p>
+<ul>
+<li>keep tenure and drop tenure_fct</li>
+<li>Keep total family variable</li>
+<li>PCA variables aren’t the best but aren’t the worst and can stay</li>
+</ul>
+<!-- raw HTML omitted -->
+<pre><code>## ranger variable importance
+##
+##   only 20 most important variables shown (out of 24)
+##
+##                  Overall
+## age              100.000
+## numofproducts     92.463
+## balance           32.226
+## estimatedsalary   17.219
+## isactivemember    17.043
+## creditscore       17.031
+## NamePC4           15.730
+## total_family      15.405
+## NamePC2           15.174
+## NamePC7           14.512
+## NamePC5           14.331
+## NamePC8           14.300
+## NamePC3           14.226
+## NamePC9           13.878
+## NamePC10          13.670
+## NamePC1           13.664
+## NamePC6           13.399
+## tenure            12.836
+## geographyGermany  10.429
+## hascrcard          4.575
+</code></pre>
+<h2 id="pre-processing-data">Pre-processing data</h2>
+<p>We can now use the recipes package to conduct pre-processing,
+pre-processing allows us to conduct transformations of the data which
+hopefully improves the models ability to predict. As the name
+suggestions, recipes has been constructed as an emulation of the food
+preparation process. The key functions are:</p>
+<ul>
+<li>recipes: This allows us to determine what pre-processing we wish to
+apply to our data</li>
+<li>prep: Estimates the parameters associated with the chosen recipe</li>
+<li>bake: Applies the actual two steps above</li>
+</ul>
+<p>Using the recipes package, two different steps of pre-processing will be
+used to compare prediction accuracy with and without PCA. Both recipes
+will include the same steps except from the last which will be either
+removing variables with near zero variance or applying principle
+component analysis.</p>
+<p>Using the recipes package, steps that will be applied are:</p>
+<ul>
+<li>Remove variables from feature selection</li>
+<li>Covert nominal variables to dummy variables</li>
+<li>Centre and scale all numerical variables</li>
+<li>Remove highly correlated variables</li>
+<li>Remove variables with no variance</li>
+<li>Remove variables with minimal variance</li>
+</ul>
+<p>Once the recipes have been created, the bake function is used to apply
+the transformations to the training and testing set and ultimately
+replace the old dataframes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Pre-processing - With near zero inflation</span>
+recipe <span style="color:#f92672">&lt;-</span>
+  df_train <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">recipe</span>(exited <span style="color:#f92672">~</span> .) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_rm</span>(surname, tenure_fct) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_dummy</span>(<span style="color:#a6e22e">all_nominal</span>(), <span style="color:#f92672">-</span><span style="color:#a6e22e">all_outcomes</span>()) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_normalize</span>(<span style="color:#a6e22e">all_numeric</span>(), <span style="color:#f92672">-</span><span style="color:#a6e22e">all_outcomes</span>()) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_corr</span>(<span style="color:#a6e22e">all_numeric</span>(), <span style="color:#f92672">-</span><span style="color:#a6e22e">all_outcomes</span>(), threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_zv</span>(<span style="color:#a6e22e">all_predictors</span>()) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">step_nzv</span>(<span style="color:#a6e22e">all_predictors</span>()) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">prep</span>()
+
+<span style="color:#75715e"># Apply processing to test and training data</span>
+df_baked_train <span style="color:#f92672">&lt;-</span> recipe <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">bake</span>(df_train) <span style="color:#75715e"># Pre-processed training</span>
+df_baked_test <span style="color:#f92672">&lt;-</span> recipe <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">bake</span>(df_test) <span style="color:#75715e"># Pre-processed testing</span>
+
+<span style="color:#a6e22e">rm</span>(df_train, df_test) <span style="color:#75715e"># remove old data</span>
+</code></pre></div><h2 id="cross-validation">Cross Validation</h2>
+<p>Cross validation allows us to explore multiple cuts of our data and to
+gain confidence that the model performs well on multiple slices of the
+data, which reduces bias and overfitting. 5 fold cross validation will
+be applied and for fair comparison across the various models, they will
+be applied to the exact same splits of data.</p>
+<p>The vfold_cv function is used to create 5 equal splits in our baked
+training data, again there is an option to stratify sampling along our
+target variable. The object l_cv is created to be used later in
+upcoming sections.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Cross validation</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1989</span>)
+l_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vfold_cv</span>(df_baked_train, v <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exited&#34;</span>) <span style="color:#75715e"># Cross validation</span>
+</code></pre></div><h2 id="develop-competing-models-with-tuning-where-required">Develop competing models with tuning where required</h2>
+<p>To test the flexibility of tidymodel, the following three models will be
+used:</p>
+<ul>
+<li>glm</li>
+<li>glmnet</li>
+<li>random forest</li>
+</ul>
+<p>In each of the models mentioned above, 5 models will be built on the
+data splits created by rsamples for cross validation. glmnet and random
+forest have hyper parameters, so functionality from tune and dials will
+be used to explore the best hyperparameters with respect to roc.</p>
+<h3 id="glm">GLM</h3>
+<p>Logistic regression is a very basic but surprisingly effective binary
+classification algorithm, when appropriately built. As this is an
+exercise to explore tidy models, a quick logistic regression model will
+be built and the variables which are deemed significant will be used as
+the baseline model. The variables in the table below are the one’s which
+will be used as part of the baseline model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Get features</span>
+<span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glm&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> df_baked_train) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">tidy</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(p.value <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.05</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">kable</span>()
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">(Intercept)</td>
+<td align="right">1.6535658</td>
+<td align="right">0.0356813</td>
+<td align="right">46.342581</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">creditscore</td>
+<td align="right">0.0635297</td>
+<td align="right">0.0311580</td>
+<td align="right">2.038949</td>
+<td align="right">0.0414551</td>
+</tr>
+<tr>
+<td align="left">age</td>
+<td align="right">-0.7578371</td>
+<td align="right">0.0312033</td>
+<td align="right">-24.287055</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">tenure</td>
+<td align="right">0.0734776</td>
+<td align="right">0.0312311</td>
+<td align="right">2.352709</td>
+<td align="right">0.0186372</td>
+</tr>
+<tr>
+<td align="left">balance</td>
+<td align="right">-0.1658047</td>
+<td align="right">0.0369276</td>
+<td align="right">-4.489997</td>
+<td align="right">0.0000071</td>
+</tr>
+<tr>
+<td align="left">isactivemember</td>
+<td align="right">0.5111766</td>
+<td align="right">0.0330989</td>
+<td align="right">15.443899</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">geography_Germany</td>
+<td align="right">-0.3357994</td>
+<td align="right">0.0338382</td>
+<td align="right">-9.923678</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr>
+<td align="left">gender_Male</td>
+<td align="right">0.2959252</td>
+<td align="right">0.0313505</td>
+<td align="right">9.439244</td>
+<td align="right">0.0000000</td>
+</tr>
+</tbody>
+</table>
+<p>The function below makes use of purrr’s map2_df function which allows
+iteration over multiple factors and returns a dataframe. The map2_df
+function iterates over the cross validation object ‘l_cv’ which was
+created above.</p>
+<p>Within each iteration:</p>
+<ul>
+<li>The analysis and assessment functions are used to split the data
+effectively into training and testing. Note the deliberate
+difference in the names of functions as supposed to training and
+testing</li>
+<li>A GLM model is built on the analysis data, with the columns in the
+table above</li>
+<li>The GLM model is used to predict the target variable on the
+assessment data, both the class and probability is retained in a
+table</li>
+<li>The output is stored in a list to be used later in the analysis</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># glm - 5 fold CV</span>
+mod_glm <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">list</span>(parameters <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+       df <span style="color:#f92672">=</span> <span style="color:#a6e22e">map2_df</span>(.x <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>splits,
+                    .y <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>id,
+                    <span style="color:#a6e22e">function </span>(split <span style="color:#f92672">=</span> .x, fold <span style="color:#f92672">=</span> .y)
+                       {
+                         <span style="color:#75715e"># Split the data into analysis and assessment tables</span>
+                         df_analysis <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">analysis</span>(split)
+                         df_assessment <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">assessment</span>(split)
+
+                         <span style="color:#75715e"># Build the model</span>
+                         mod <span style="color:#f92672">&lt;-</span>
+                          <span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+                          <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glm&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+                          <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> creditscore <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> tenure <span style="color:#f92672">+</span>
+                                       balance <span style="color:#f92672">+</span> isactivemember <span style="color:#f92672">+</span>
+                                       geography_Germany <span style="color:#f92672">+</span> gender_Male,
+                              data <span style="color:#f92672">=</span> df_analysis)
+
+                         <span style="color:#75715e"># Summarise Predictions</span>
+                         table <span style="color:#f92672">&lt;-</span>
+                           <span style="color:#a6e22e">tibble</span>(fold <span style="color:#f92672">=</span> fold,
+                                  truth <span style="color:#f92672">=</span> df_assessment<span style="color:#f92672">$</span>exited,
+                                  .pred_Churn <span style="color:#f92672">=</span>
+                                    <span style="color:#a6e22e">predict</span>(mod,
+                                            new_data <span style="color:#f92672">=</span> df_assessment,
+                                            type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Churn&#34;</span>]],
+                                  .pred_Remain <span style="color:#f92672">=</span>
+                                    <span style="color:#a6e22e">predict</span>(mod,
+                                            new_data <span style="color:#f92672">=</span> df_assessment,
+                                            type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Remain&#34;</span>]],
+                                  .pred_Class <span style="color:#f92672">=</span>
+                                    <span style="color:#a6e22e">predict</span>(mod,
+                                            new_data <span style="color:#f92672">=</span> df_assessment) <span style="color:#f92672">%&gt;%</span>
+                                    <span style="color:#a6e22e">unlist</span>() <span style="color:#f92672">%&gt;%</span>
+                                    <span style="color:#a6e22e">as.character</span>()
+                                  ) <span style="color:#f92672">%&gt;%</span>
+                           <span style="color:#a6e22e">mutate</span>(.pred_Class <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(.pred_Class))
+                         })
+       )
+</code></pre></div><h3 id="glmnet">GLMNET</h3>
+<p>The second model is an extension of the glm model created above and is
+commonly referred to as elastic-net logistic regression. This algorithm
+adds regularisation to combine ridge and lasso regression, which
+ultimately control the size of the model. This method has two
+hyperparameters ‘penalty’ and ‘mixture’, meaning an additional step in
+the process is required.</p>
+<p>The additional steps are:</p>
+<ul>
+<li>Within the model build, the penalty and mixture features are equated
+with tune functions. This indicates that some form of search will be
+conducted across these parameters</li>
+<li>The second step is to use the tune grid, parameters and
+grid_max_entropy functions from the tune and dials packages.
+<ul>
+<li>Grid_max_entropy creates a grid of size 50 in this case of
+random parameters which cover the parameter search space</li>
+<li>The tune_grid function takes a model formula, the cross
+validation and a metric to optimise (roc in this case). The
+function uses the cross validation to estimate the roc for the
+different parameters in the grid</li>
+<li>The select_best function from the tune package is used to
+retrieve the hyperparameter values which yield the best results</li>
+</ul>
+</li>
+</ul>
+<p>Once the model is built it is re-applied to the cross validated data and
+the predictions and parameters are stored in a list for a later stage.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Set the model engine</span>
+mod <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+    penalty <span style="color:#f92672">=</span> <span style="color:#a6e22e">tune</span>(),
+    mixture <span style="color:#f92672">=</span> <span style="color:#a6e22e">tune</span>()) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glmnet&#34;</span>)
+
+<span style="color:#75715e"># Build initial model with varying parameters and cross validation</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1989</span>)
+mod_results_tbl <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">tune_grid</span>(
+            formula   <span style="color:#f92672">=</span> exited <span style="color:#f92672">~</span> .,
+            model     <span style="color:#f92672">=</span> mod,
+            resamples <span style="color:#f92672">=</span> l_cv,
+            grid      <span style="color:#f92672">=</span> <span style="color:#a6e22e">grid_max_entropy</span>(<span style="color:#a6e22e">parameters</span>(<span style="color:#a6e22e">penalty</span>(),
+                                                    <span style="color:#a6e22e">mixture</span>()),
+                                         size <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>),
+            metrics   <span style="color:#f92672">=</span> <span style="color:#a6e22e">metric_set</span>(roc_auc),
+            control   <span style="color:#f92672">=</span> <span style="color:#a6e22e">control_grid</span>(verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+      )
+
+<span style="color:#75715e"># Store the parameters</span>
+df_parameter <span style="color:#f92672">&lt;-</span> mod_results_tbl <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select_best</span>(<span style="color:#e6db74">&#34;roc_auc&#34;</span>)
+
+<span style="color:#75715e"># glmnet - 5 fold CV</span>
+mod_glmnet <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">list</span>(parameters <span style="color:#f92672">=</span> df_parameter,
+       df <span style="color:#f92672">=</span> <span style="color:#a6e22e">map2_df</span>(.x <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>splits, <span style="color:#75715e"># Add predictions and find c</span>
+                    .y <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>id,
+                    <span style="color:#a6e22e">function </span>(split <span style="color:#f92672">=</span> .x, fold <span style="color:#f92672">=</span> .y)
+                     {
+                       <span style="color:#75715e"># Split the data into analysis and assessment tables</span>
+                       df_analysis <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">analysis</span>(split)
+                       df_assessment <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">assessment</span>(split)
+
+                       <span style="color:#75715e"># Build the model</span>
+                       mod_2 <span style="color:#f92672">&lt;-</span>
+                        <span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+                                     penalty <span style="color:#f92672">=</span>
+                                      <span style="color:#a6e22e">as.numeric</span>(df_parameter[<span style="color:#e6db74">&#34;penalty&#34;</span>]),
+                                     mixture <span style="color:#f92672">=</span>
+                                      <span style="color:#a6e22e">as.numeric</span>(df_parameter[<span style="color:#e6db74">&#34;mixture&#34;</span>])
+                                     ) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glmnet&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> df_analysis)
+
+                       <span style="color:#75715e"># Summarise Predictions</span>
+                       table <span style="color:#f92672">&lt;-</span>
+                         <span style="color:#a6e22e">tibble</span>(fold <span style="color:#f92672">=</span> fold,
+                                truth <span style="color:#f92672">=</span> df_assessment<span style="color:#f92672">$</span>exited,
+                                .pred_Churn <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2,
+                                          new_data <span style="color:#f92672">=</span> df_assessment,
+                                          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Churn&#34;</span>]],
+                                .pred_Remain <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2,
+                                          new_data <span style="color:#f92672">=</span> df_assessment,
+                                          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Remain&#34;</span>]],
+                                .pred_Class <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2,
+                                          new_data <span style="color:#f92672">=</span> df_assessment) <span style="color:#f92672">%&gt;%</span>
+                                  <span style="color:#a6e22e">unlist</span>() <span style="color:#f92672">%&gt;%</span>
+                                  <span style="color:#a6e22e">as.character</span>()
+                                ) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">mutate</span>(.pred_Class <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(.pred_Class))
+                      })
+    )
+
+<span style="color:#a6e22e">rm</span>(mod, mod_results_tbl, df_parameter) <span style="color:#75715e"># Clear memory</span>
+</code></pre></div><h3 id="random-forest">Random Forest</h3>
+<p>The final model variant to be explored is random forest which is a tree
+based model and differs from the two models explored thus far. Again
+this model has hyperparameter and the tidymodel packages will be used to
+aid in tuning.</p>
+<p>The steps in the build are:</p>
+<ul>
+<li>Create a model object, setting the hyperparameters to tune and
+setting the engine to ranger. This means using the package ranger’s
+implementation of random forest</li>
+<li>Secondly, the grid_random function is used to generate 50 random
+combinations of parameters mtry, trees and min_n. mtry requires an
+upper bound to be set, which in this case is set at the number of
+predictors</li>
+<li>The best parameters are stored and applied in the cross validation
+as done in the previous step</li>
+<li>The output is stored in a list for later use</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Set the model engine</span>
+mod <span style="color:#f92672">&lt;-</span>
+ <span style="color:#a6e22e">rand_forest</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+             mtry <span style="color:#f92672">=</span> <span style="color:#a6e22e">tune</span>(),
+             trees <span style="color:#f92672">=</span> <span style="color:#a6e22e">tune</span>(),
+             min_n <span style="color:#f92672">=</span> <span style="color:#a6e22e">tune</span>()) <span style="color:#f92672">%&gt;%</span>
+<span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;ranger&#34;</span>)
+
+<span style="color:#75715e"># Build initial model with varying parameters and cross validation</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1989</span>)
+mod_results_tbl <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">tune_grid</span>(
+    formula   <span style="color:#f92672">=</span> exited <span style="color:#f92672">~</span> .,
+    model     <span style="color:#f92672">=</span> mod,
+    resamples <span style="color:#f92672">=</span> l_cv,
+    grid      <span style="color:#f92672">=</span> <span style="color:#a6e22e">grid_random</span>(<span style="color:#a6e22e">parameters</span>(<span style="color:#a6e22e">mtry</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">22</span>)),
+                                       <span style="color:#a6e22e">trees</span>(),
+                                       <span style="color:#a6e22e">min_n</span>()),
+                            size <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>),
+    metrics   <span style="color:#f92672">=</span> <span style="color:#a6e22e">metric_set</span>(roc_auc),
+    control   <span style="color:#f92672">=</span> <span style="color:#a6e22e">control_grid</span>()
+      )
+
+<span style="color:#75715e"># Store the parameters</span>
+df_parameter <span style="color:#f92672">&lt;-</span> mod_results_tbl <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select_best</span>(<span style="color:#e6db74">&#34;roc_auc&#34;</span>)
+
+<span style="color:#75715e"># random forest - 5 fold CV</span>
+mod_rf <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">list</span>(parameters <span style="color:#f92672">=</span> df_parameter,
+       df <span style="color:#f92672">=</span> <span style="color:#a6e22e">map2_df</span>(.x <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>splits,
+                    .y <span style="color:#f92672">=</span> l_cv<span style="color:#f92672">$</span>id,
+                    <span style="color:#a6e22e">function </span>(split <span style="color:#f92672">=</span> .x, fold <span style="color:#f92672">=</span> .y)
+                     {
+                       <span style="color:#75715e"># Split the data into analysis and assessment tables</span>
+                       df_analysis <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">analysis</span>(split)
+                       df_assessment <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">assessment</span>(split)
+
+                       <span style="color:#75715e"># Build the model</span>
+                       mod_2 <span style="color:#f92672">&lt;-</span>
+                        <span style="color:#a6e22e">rand_forest</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+                                     mtry <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(df_parameter[<span style="color:#e6db74">&#34;mtry&#34;</span>]),
+                                     trees <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(df_parameter[<span style="color:#e6db74">&#34;trees&#34;</span>]),
+                                     min_n <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(df_parameter[<span style="color:#e6db74">&#34;min_n&#34;</span>])
+                                     ) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;ranger&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> df_analysis)
+
+                       <span style="color:#75715e"># Summarise Predictions</span>
+                       table <span style="color:#f92672">&lt;-</span>
+                         <span style="color:#a6e22e">tibble</span>(fold <span style="color:#f92672">=</span> fold,
+                                truth <span style="color:#f92672">=</span> df_assessment<span style="color:#f92672">$</span>exited,
+                                .pred_Churn <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2,
+                                          new_data <span style="color:#f92672">=</span> df_assessment,
+                                          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Churn&#34;</span>]],
+                                .pred_Remain <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2,
+                                          new_data <span style="color:#f92672">=</span> df_assessment,
+                                          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)[[<span style="color:#e6db74">&#34;.pred_Remain&#34;</span>]],
+                                .pred_Class <span style="color:#f92672">=</span>
+                                  <span style="color:#a6e22e">predict</span>(mod_2, new_data <span style="color:#f92672">=</span> df_assessment) <span style="color:#f92672">%&gt;%</span>
+                                  <span style="color:#a6e22e">unlist</span>() <span style="color:#f92672">%&gt;%</span>
+                                  <span style="color:#a6e22e">as.character</span>()
+                                ) <span style="color:#f92672">%&gt;%</span>
+                         <span style="color:#a6e22e">mutate</span>(.pred_Class <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(.pred_Class))
+                        })
+          )
+
+<span style="color:#a6e22e">rm</span>(mod, mod_results_tbl, df_parameter) <span style="color:#75715e"># Clear memory</span>
+</code></pre></div><h2 id="model-evaluation-metrics">Model Evaluation metrics</h2>
+<p>This section summarises the performance of the three models from the
+cross validation and hyperparameter tuning section above. The evaluation
+metrics which can be seen in the plot below are:</p>
+<ul>
+<li>accuracy: the proportion of observations the model correctly
+predicted</li>
+<li>sensitivity (true positive rate): the proportion of actual positives
+that are correctly identified</li>
+<li>specificity (true negative rate): the proportion of actual negatives
+that are correctly identified</li>
+<li>auroc: Measures the entire 2d area under the ROC curve, which
+measures the power of the model under all possible classification
+thresholds</li>
+</ul>
+<p>The plot below shows:</p>
+<ul>
+<li>Consistently across the metrics the random forest model is the best
+performing</li>
+<li>Despite minimal efforts to develop a robust GLM model, it holds it’s
+own against the glmnet model and breaks away when sensitivity is
+considered</li>
+<li>All models have a higher specificity than sensitivity, most likely
+relating to the class imbalance</li>
+</ul>
+<!-- raw HTML omitted -->
+<figure>
+    <img src="https://registea.github.io/project_portfolio/images/project1/fig8_metric_comparison.png"/> 
+</figure>
+
+<h2 id="probability-thresholds">Probability thresholds</h2>
+<p>One method of addressing class imbalance (i.e.. churn and remain having
+different proportions) is to adjust the threshold that determines
+whether the probability means churn on remain. Typically the threshold
+is set at 50%, however it can be changed to a threshold which provides a
+better balance between sensitivity and specificity. In this case, the
+model is required to estimate churn or remain equally so a new threshold
+is desirable.</p>
+<p>The code below utilises the prediction data from the cross validation
+exercise, using the threshold_perf function from the probably package,
+evaluation metrics can be calculated for each 1% increment between 0 to
+1 where the threshold is change. The table below shows the values of
+sensitivity and specificity for the random forest model for each of the
+5 folds and the cut off points required to achieve these. The analysis
+shows that a threshold of around 20% would provide more even accuracy
+between sensitivity and specificity which both seem to vary around
+77-78%.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># probability thresholds by fold</span>
+df_thresholds <span style="color:#f92672">&lt;-</span>
+  mod_summary_all <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">filter</span>(model <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;randomforest&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">select</span>(fold, truth, .pred_Churn) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">group_by</span>(fold) <span style="color:#f92672">%&gt;%</span>
+    probably<span style="color:#f92672">::</span><span style="color:#a6e22e">threshold_perf</span>(truth,
+                             .pred_Churn,
+                             thresholds <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0.01</span>)) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">filter</span>(.metric <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;spec&#34;</span>, <span style="color:#e6db74">&#34;sens&#34;</span>, <span style="color:#e6db74">&#34;distance&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">spread</span>(.metric, .estimate) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">mutate</span>(distance_abs <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(sens <span style="color:#f92672">-</span> spec)) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">group_by</span>(fold) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">filter</span>(distance_abs <span style="color:#f92672">==</span> <span style="color:#a6e22e">min</span>(distance_abs)) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">ungroup</span>()
+
+<span style="color:#75715e"># Show table</span>
+df_thresholds <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">kable</span>(align <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>))
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="center">fold</th>
+<th align="center">.threshold</th>
+<th align="center">.estimator</th>
+<th align="center">distance</th>
+<th align="center">sens</th>
+<th align="center">spec</th>
+<th align="center">distance_abs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Fold1</td>
+<td align="center">0.22</td>
+<td align="center">binary</td>
+<td align="center">0.0963778</td>
+<td align="center">0.7810458</td>
+<td align="center">0.7799163</td>
+<td align="center">0.0011294</td>
+</tr>
+<tr>
+<td align="center">Fold2</td>
+<td align="center">0.22</td>
+<td align="center">binary</td>
+<td align="center">0.0952755</td>
+<td align="center">0.7777778</td>
+<td align="center">0.7857741</td>
+<td align="center">0.0079963</td>
+</tr>
+<tr>
+<td align="center">Fold3</td>
+<td align="center">0.21</td>
+<td align="center">binary</td>
+<td align="center">0.1149949</td>
+<td align="center">0.7614379</td>
+<td align="center">0.7589958</td>
+<td align="center">0.0024421</td>
+</tr>
+<tr>
+<td align="center">Fold4</td>
+<td align="center">0.20</td>
+<td align="center">binary</td>
+<td align="center">0.1194588</td>
+<td align="center">0.7540984</td>
+<td align="center">0.7571189</td>
+<td align="center">0.0030206</td>
+</tr>
+<tr>
+<td align="center">Fold5</td>
+<td align="center">0.19</td>
+<td align="center">binary</td>
+<td align="center">0.1476899</td>
+<td align="center">0.7278689</td>
+<td align="center">0.7286432</td>
+<td align="center">0.0007744</td>
+</tr>
+</tbody>
+</table>
+<p>Averaging the results from the cross validation above shows that the
+average threshold which should be applied is 20.8% In essence is we
+apply this threshold rather 50% we will reduce how accurate we are at
+predicting customers who remain, but significantly improve how well we
+predict customers that churn.</p>
+<table>
+<thead>
+<tr>
+<th align="center">.threshold</th>
+<th align="center">distance</th>
+<th align="center">sens</th>
+<th align="center">spec</th>
+<th align="center">distance_abs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0.208</td>
+<td align="center">0.1147594</td>
+<td align="center">0.7604457</td>
+<td align="center">0.7620897</td>
+<td align="center">0.0030725</td>
+</tr>
+</tbody>
+</table>
+<h1 id="prediction-evaluation">Prediction Evaluation</h1>
+<p>The final stage of this analysis is to use the models built and tuned on
+the training data and see how well they perform on the unseen test data.
+All three models will be used to predict whether customers churn or
+remain in the testing dataset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Final glm</span>
+mod_final_glm <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glm&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., df_baked_test)
+
+<span style="color:#75715e"># Final glmnet</span>
+mod_final_glmnet <span style="color:#f92672">&lt;-</span>
+  <span style="color:#a6e22e">logistic_reg</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+               penalty <span style="color:#f92672">=</span> mod_glmnet[[<span style="color:#e6db74">&#34;parameters&#34;</span>]][[<span style="color:#e6db74">&#34;penalty&#34;</span>]],
+               mixture <span style="color:#f92672">=</span> mod_glmnet[[<span style="color:#e6db74">&#34;parameters&#34;</span>]][[<span style="color:#e6db74">&#34;mixture&#34;</span>]]
+               ) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;glmnet&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., df_baked_test)
+
+
+<span style="color:#75715e"># Final random forest</span>
+mod_final_rf <span style="color:#f92672">&lt;-</span>
+ <span style="color:#a6e22e">rand_forest</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
+             mtry <span style="color:#f92672">=</span> mod_rf[[<span style="color:#e6db74">&#34;parameters&#34;</span>]][[<span style="color:#e6db74">&#34;mtry&#34;</span>]],
+             trees <span style="color:#f92672">=</span> mod_rf[[<span style="color:#e6db74">&#34;parameters&#34;</span>]][[<span style="color:#e6db74">&#34;trees&#34;</span>]],
+             min_n <span style="color:#f92672">=</span> mod_rf[[<span style="color:#e6db74">&#34;parameters&#34;</span>]][[<span style="color:#e6db74">&#34;min_n&#34;</span>]]
+             ) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">set_engine</span>(<span style="color:#e6db74">&#34;ranger&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">fit</span>(exited <span style="color:#f92672">~</span> ., df_baked_test)
+</code></pre></div><p>The table below shows the performance of the models on the test data:</p>
+<ul>
+<li>The random forest model is the clear winner with respect to both
+auroc and accuracy</li>
+<li>Glm marginally outperforms the glmnet model across both metrics</li>
+</ul>
+<p>Given the superior performance achieved by the random forest model, it
+will be labelled as our champion.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Summary of prediction performance</span>
+<span style="color:#a6e22e">bind_rows</span>(
+          <span style="color:#a6e22e">predict</span>(mod_final_glm, new_data <span style="color:#f92672">=</span> df_baked_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(mod_final_glm, new_data <span style="color:#f92672">=</span> df_baked_test)) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(df_baked_test) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">metrics</span>(exited, .pred_Remain, estimate <span style="color:#f92672">=</span> .pred_class) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">mutate</span>(model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;glm&#34;</span>),
+
+          <span style="color:#a6e22e">predict</span>(mod_final_glmnet, new_data <span style="color:#f92672">=</span> df_baked_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(mod_final_glmnet, new_data <span style="color:#f92672">=</span> df_baked_test)) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(df_baked_test) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">metrics</span>(exited, .pred_Remain, estimate <span style="color:#f92672">=</span> .pred_class) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">mutate</span>(model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;glmnet&#34;</span>),
+
+          <span style="color:#a6e22e">predict</span>(mod_final_rf, new_data <span style="color:#f92672">=</span> df_baked_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(mod_final_rf, new_data <span style="color:#f92672">=</span> df_baked_test)) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">bind_cols</span>(df_baked_test) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">metrics</span>(exited, .pred_Remain, estimate <span style="color:#f92672">=</span> .pred_class) <span style="color:#f92672">%&gt;%</span>
+            <span style="color:#a6e22e">mutate</span>(model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;randomforest&#34;</span>)
+          ) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(.metric <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;accuracy&#34;</span>, <span style="color:#e6db74">&#34;roc_auc&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">spread</span>(.metric, .estimate) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(<span style="color:#ae81ff">-.</span>estimator) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">kable</span>(align <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>))
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="center">model</th>
+<th align="center">accuracy</th>
+<th align="center">roc_auc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">glm</td>
+<td align="center">0.8155262</td>
+<td align="center">0.7788283</td>
+</tr>
+<tr>
+<td align="center">glmnet</td>
+<td align="center">0.8083233</td>
+<td align="center">0.7756390</td>
+</tr>
+<tr>
+<td align="center">randomforest</td>
+<td align="center">0.9155662</td>
+<td align="center">0.9789261</td>
+</tr>
+</tbody>
+</table>
+<p>The last stage of this analysis is to compare the predictions from the
+random forest model with the standard threshold of 50% and the
+calculated threshold of 21%. These results can be seen in the table
+below and as expected the sensitivity has increased dramatically and the
+specificity has reduced marginally. The expectation was that the two
+metrics would have been similar, the fact that they are not may indicate
+some bias between our testing and training data.</p>
+<p>The final step which will not be completed here is that the random
+forest model is re-built on the entire dataset.</p>
+<table>
+<thead>
+<tr>
+<th align="center">.cutoff</th>
+<th align="center">accuracy</th>
+<th align="center">sens</th>
+<th align="center">spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">21_perc</td>
+<td align="center">0.866</td>
+<td align="center">0.990</td>
+<td align="center">0.835</td>
+</tr>
+<tr>
+<td align="center">50_perc</td>
+<td align="center">0.916</td>
+<td align="center">0.623</td>
+<td align="center">0.990</td>
+</tr>
+</tbody>
+</table>
+<h1 id="conclusion">Conclusion</h1>
+<p>In summary the tidymodels meta package is a really good wrapper for
+predictive modelling and sits within the familiar ethos of the
+tidyverse. The packages are undergoing continued development, so I am
+sure additional functionality will be added overtime. The functionality
+provided makes the model development and assessment process relatively
+simple by breaking it down into smaller more manageable chunks.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://registea.github.io/project_portfolio" >
+    &copy;  Anthony Registe 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/anthony-registe/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/registea/" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://registea.github.io/project_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Anthony Registe</title>
+    <link>https://registea.github.io/project_portfolio/post/</link>
+    <description>Recent content in Projects on Anthony Registe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jul 2020 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://registea.github.io/project_portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploring Tidymodels</title>
+      <link>https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/</link>
+      <pubDate>Mon, 13 Jul 2020 12:00:00 +0000</pubDate>
+      
+      <guid>https://registea.github.io/project_portfolio/post/project-1-tidymodels_exploration/</guid>
+      <description>Introduction The primary objective of this notebook is to explore the tidymodels predictive model framework. I am familiar with the caret package but as Max Kuhn has replaced caret with tidymodels and it has been available for a couple of years, I thought it a good time to take it for a test ride. To enable me to explore the framework a churn dataset provided by Shurti_lyyer on Kaggle will be used.</description>
+    </item>
+    
+  </channel>
+</rss>
