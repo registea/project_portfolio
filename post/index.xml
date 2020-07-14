@@ -20,5 +20,15 @@
       <description>Introduction The primary objective of this notebook is to explore the tidymodels predictive model framework. I am familiar with the caret package but as Max Kuhn has replaced caret with tidymodels and it has been available for a couple of years, I thought it a good time to take it for a test ride. To enable me to explore the framework a churn dataset provided by Shurti_lyyer on Kaggle will be used.</description>
     </item>
     
+    <item>
+      <title>Feature Importance: Predictive Power Score</title>
+      <link>https://registea.github.io/project_portfolio/post/project-2-predictive_power_score/</link>
+      <pubDate>Mon, 13 Jul 2020 12:00:00 +0000</pubDate>
+      
+      <guid>https://registea.github.io/project_portfolio/post/project-2-predictive_power_score/</guid>
+      <description>Introduction This notebook explores the Predictive Power Score (PPS) filter method created by Florian Wetschoreck and posted on Medium. The article describes the PPS as a data type agnostic normalised score of predictive power. The example in the article provided was written in python, this notebook implements the PPS in R, via a custom function.
+To explore the PPS, the house price prediction dataset from kaggle is used. This dataset is relatively large from a dimensional perspective but relatively small with regards to observations.</description>
+    </item>
+    
   </channel>
 </rss>
